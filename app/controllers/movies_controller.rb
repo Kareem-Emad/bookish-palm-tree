@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
+    # possible to add pagination here
     q = params['q']
 
     if q.nil?
