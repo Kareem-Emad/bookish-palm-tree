@@ -4,10 +4,11 @@ class MoviesController < ApplicationController
   # GET /movies or /movies.json
   def index
     q = params['q']
+
     if q.nil?
-      @movies = Movie.order('average_rating DESC')
+      @movies = Movie.all
     else
-      @movies = Movie.where("actor LIKE ?", "%#{q}%").order('average_rating DESC')
+      @movies = Movie.where("actor LIKE ?", "%#{q}%")
     end
   end
 
