@@ -8,7 +8,10 @@ class MoviesController < ApplicationController
     if q.nil?
       @movies = Movie.all
     else
-      @movies = Movie.where("actor LIKE ?", "%#{q}%")
+      # it's better to move text search queries to 
+      # a speciazlied search engine like ES/opensearch
+      # and leave ground truth in a db like mysql/postgres
+      @movies = Movie.search_by_actor(q)
     end
   end
 

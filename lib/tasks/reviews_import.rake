@@ -12,14 +12,13 @@ namespace :import do
     CSV.foreach("reviews.csv", headers: true).each_slice(REVIEWS_BATCH_SIZE) do |rows|
         movies_mp = {}
         reviews_by_movie = {}
-        rows.map do |row|
-            movies_mp[row['Movie']] = movies_mp[row['Movie']] || Movie.find_by(title: row['Movie'])
-            mv_id = row['Movie']
-            unless reviews_by_movie.has_key?(mv_id)
-                reviews_by_movie[mv_id] = []
-            end
 
-            reviews_by_movie[mv_id] <<
+        rows.map do |row|
+            movie_title = row['Movie']
+            movies_mp[movie_title] = movies_mp[movie_title] || Movie.find_by(title: movie_title)
+
+            reviews_by_movie[movie_title] = [] unless reviews_by_movie.has_key?(movie_title)
+            reviews_by_movie[movie_title] <<
             {
                 rating: row['Stars'].to_i,
                 comment: row['Review'],
