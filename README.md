@@ -1,24 +1,23 @@
 # README
+## Usage
+### Movies Overview 
+Navigate to http://127.0.0.1:3000/movies
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Actor Search
+Navigate to http://127.0.0.1:3000/movies?q=actor_name
 
-Things you may want to cover:
+where `q` is the search query
 
-* Ruby version
+### Importing data
 
-* System dependencies
+#### Movies
 
-* Configuration
+```
+rake import:movies
+```
 
-* Database creation
+### Reviews
+```
+rake import:reviews
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
